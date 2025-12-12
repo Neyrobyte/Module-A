@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Сброс */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Базовые */
+        body {
+            font-family: var(--impact-font);
+            font-size: 16px;
+            background-color: #081116;
+            color: #d6d6d6;
+        }
+
+        .menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .item {
+            position: relative;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        .item:hover .dropdown {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="menu">
+        <div class="item">
+            Пункт
+            <div class="dropdown">
+                <a href="#">Ссылка 1</a>
+                <a href="#">Ссылка 2</a>
+                <a href="#">Ссылка 3</a>
+            </div>
+        </div>
+    </nav>
+
+</body>
+
+</html>
