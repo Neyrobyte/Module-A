@@ -6,12 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бургер меню на CSS</title>
     <style>
-
         * {
             background-color: #171717;
         }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
         /* Скрываем реальный чекбокс */
-        #menu-toggle {                                  
+        #menu-toggle {
             display: none;
         }
 
@@ -83,6 +88,39 @@
             border-radius: 10px;
             cursor: crosshair;
         }
+
+        .tst1 {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* font-size: 5vh; */
+            color: #dfdfdf;
+            margin: 20vh;
+            height: 12vh;
+            width: 20vh;
+            background-color: rgb(20, 34, 43);
+            border: 2px rgb(85, 93, 109) solid;
+            border-radius: 10px;
+            cursor: help;
+        }
+
+        .tst1:hover {
+            background-color: rgb(85, 93, 109);
+            border: 2px black solid;
+            color: black;
+            font-weight: bold;
+            tab-size: 10px;
+        }
+
+        .tst1:hover::after {
+            content: 'Hovered';
+            background-color: rgb(20, 34, 43);
+            color: rgb(172, 172, 172);
+            font-weight: bold;
+            padding: 8px 12px;
+            display: inline-block;
+            border-radius: 5px;
+        }
     </style>
 </head>
 
@@ -110,6 +148,10 @@
             <li><a href="#">Услуги</a></li>
             <li><a href="#">Контакты</a></li>
         </ul>
+    </div>
+
+    <div class="tst1">
+        121212
     </div>
 
 </body>
