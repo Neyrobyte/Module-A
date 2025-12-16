@@ -49,6 +49,11 @@
             color: #d6d6d6;
         }
 
+        /* Сброс */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
         /* Layout */
         .flex-container {
@@ -116,31 +121,6 @@
         }
 
 
-        /* Alt Navigation */
-        /* .alt-nav__list {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-
-        .alt-nav__item {
-            cursor: pointer;
-            transition: color 0.1s;
-        }
-
-        .alt-nav__item:hover {
-            color: var(--secondary-green);
-        }
-
-        .alt-nav__item--active {
-            color: var(--gray-secondary);
-        }
-
-        .alt-nav__item--active:hover {
-            color: var(--gray-secondary);
-        } */
-
-
         /* Burger */
         .burger {
             display: flex;
@@ -172,25 +152,12 @@
             padding: 0.7rem;
             width: 100%;
             border-bottom: 1px solid var(--border);
-            user-select: none;
+            /* user-select: none; */
             height: var(--tool-line-height);
         }
 
         #toggle:checked+.menu {
             display: block;
-        }
-
-        .menu {
-            /* Пока не реализовано */
-            margin: 20vh;
-            position: absolute;
-            display: none;
-            width: auto;
-            height: 4vh;
-            text-align: center;
-            vertical-align: middle;
-            padding: 0.5rem;
-            background-color: #00ffb31f;
         }
 
 
@@ -311,53 +278,107 @@
             -webkit-mask-image: linear-gradient(to top, black 0%, transparent 90%);
         }
 
-        /* Navigation */
-        .nav__item {
+        /* Navigation menu */
+        .nav {
             position: relative;
-            /* display: inline-block; */
-            margin-left: 10rem;
-            padding: 0.4rem;
-            padding-left: 1rem;
-            padding-right: 1rem;
-            height: auto;
-            width: auto;
-            font-size: 18px;
-            cursor: pointer;
-            transition: color 0.1s;
-        }
-
-        .nav-dropdown {
-            display: none;
-            position: absolute;
-            align-content: center;
+            display: flex;
             align-items: center;
             justify-content: center;
-            top: 2.4em;
-            left: -4em;
-            width: 12rem;
-            background: var(--black);
-            border: 1px solid var(--border);
-            padding: 10px;
-            z-index: 10;
+            font-size: 1.2rem;
+            padding: 0.8rem;
         }
 
-        .nav__item:hover,
-        .nav__item:hover .nav-dropdown {
+        /* =============== */
+        /* Navigation list */
+        .nav-list {
+            list-style: none;
             display: flex;
+            gap: 2rem;
+        }
+
+        .nav-list__item {
+            cursor: pointer;
+            padding: 0;
+            padding-left: 0.6rem;
+            transition: all 0.3s;
+        }
+
+        .nav-list__item:hover {
             color: var(--secondary-green);
         }
 
-        /* .nav__item--active {
-            color: var(--gray-secondary);
+        /* =============== */
+
+
+
+        .nav-dropdown {
+            display: block;
+            position: absolute;
+            top: 3rem;
+            right: -1.2rem;
+            width: 16rem;
+            background: var(--black);
+            border: 1px solid var(--border);
+            padding: 0.6rem;
+            padding-left: 2rem;
+            line-height: 2.5rem;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            z-index: 10;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
         }
 
-        .nav__item--active:hover {
-            color: var(--gray-secondary);
-        } */
+        .nav-dropdown__triangle {
+            position: absolute;
+            top: -1.7rem;
+            right: 4rem;
+            width: 0;
+            height: 0;
+            z-index: 11;
+        }
+
+        .nav__button {
+            position: relative;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav__button--active {
+            color: var(--light);
+        }
+
+        .nav__button--active:hover {
+            color: var(--secondary-green);
+        }
+
+        .nav__button:hover .nav-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-10%);
+            /* right: 2.6rem; */
+            pointer-events: auto;
+        }
+
+        .nav__item {
+            cursor: pointer;
+            padding: 0;
+            padding-left: 0.6rem;
+            transition: color 0.3s;
+            border: 1.0px #00000000 solid;
+            border-radius: 5px;
+            color: var(--light);
+        }
+
+        .nav__item:hover {
+            color: var(--secondary-green);
+            border-color: var(--border);
+            border-radius: 5px;
+        }
 
 
         /* Разделительная линия */
-        .border {
+        .border-card {
             display: flex;
             margin: auto;
             margin-top: 1em;
@@ -367,25 +388,20 @@
             background-image: linear-gradient(to right, transparent, var(--secondary-cyan), transparent);
         }
 
+        #border-header {
+            position: absolute;
+            background-image: linear-gradient(to right, transparent, var(--secondary-cyan), transparent);
+            top: 3.12rem;
+            right: 25%;
+            width: 100%;
+            height: 0.1rem;
+            width: 50%;
+            /* flex-basis: 100%; */
+        }
+
 
         /* Media */
         @media (max-width: 768px) {
-            /* .alt-nav__list {
-                    display: none;
-                    flex-direction: column;
-                    gap: 10px;
-                    background-color: var(--dark-gray);
-                    position: absolute;
-                    top: 60px;
-                    right: 20px;
-                    padding: 10px;
-                    border-radius: 5px;
-                }
-
-                .alt-nav.alt-nav--open .alt-nav__list {
-                    display: flex;
-                } */
-
 
             /* Left-panel */
             .left-panel {
@@ -417,16 +433,12 @@
 </head>
 
 <body>
+    <!-- Шапка -->
     <header class="header">
         <div class="header__left">
-            <!-- <div class="burger">
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
-                    <span class="burger__line"></span>
-                </div> -->
             <div class="logo">
                 <a href="#" aria-label="Ссылка на главную страницу">
-                    <img src="./res/logo-1.svg" alt="">
+                    <img src="./res/logo-1.svg" alt="Логотип BestGames"> <!-- logo-1.svg, logo-2.svg, logo-3.svg -->
                 </a>
             </div>
             <div class="title">
@@ -436,38 +448,62 @@
             </div>
         </div>
 
-        <div class="header__right">
-            <!-- <nav class="alt-nav">
-                <ul class="alt-nav__list">
-                    <li class="alt-nav__item alt-nav__item--active">Главная</li>
-                    <li class="alt-nav__item">О нас</li>
-                    <li class="alt-nav__item">Контакты</li>
-                </ul>
-            </nav> -->
-            <div class="nav__item">
-                <p>Навигация</p>
+        <!-- Навигационное меню, список -->
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-list__item"><a href="#">Поиск</a></li>
+                <li class="nav-list__item"><a href="#">Войти</a></li>
+                <li class="nav-list__item"><a href="#">Личный кабинет</a></li>
+                <li class="nav-list__item"><a href="#">Каталог игр</a></li>
+            </ul>
+        </nav>
+
+        <div id="border-header"></div>
+
+        <!-- Навигационное меню, выплывающее -->
+        <nav class="nav">
+            <div class="nav nav__button nav__button--active">
+                Навигация
                 <div class="nav-dropdown">
+                    <div class="nav-dropdown__triangle">
+                        <svg width="20" height="12" viewBox="0 0 20 12" xmlns="http://www.w3.org/2000/svg">
+                            <!-- граница -->
+                            <path d="M1 11 L10 1 L19 11" fill="none" stroke="var(--border)" stroke-width="1.7"
+                                stroke-linejoin="miter" />
+                            <!-- заливка -->
+                            <path d="M2 10 L10 2 L18 10 Z" fill="var(--black)" />
+                        </svg>
+                    </div>
+
                     <ul>
-                        <li>Поиск</li>
-                        <li>Войти</li>
-                        <li>Личный кабинет</li>
-                        <li>Каталог игр</li>
+                        <li class="nav__item nav__item">
+                            <a href="#">Поиск</a>
+                        </li>
+                        <li class="nav__item nav__item">
+                            <a href="#">Войти</a>
+                        </li>
+                        <li class="nav__item nav__item">
+                            <a href="#">Личный кабинет</a>
+                        </li>
+                        <li class="nav__item nav__item">
+                            <a href="#">Каталог игр</a>
+                        </li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </nav>
     </header>
 
     <!-- <section class="flex-container"> -->
     <main class="block-container">
         <div class="tool-line">
-            <input id="toggle" type="checkbox" hidden>
+            <!-- <input id="toggle" type="checkbox" hidden>
             <nav class="menu">
                 <div>
                     Пока ничего нет
                 </div>
             </nav>
-            <label style="user-select: none;" for="toggle">alt menu</label>
+            <label style="user-select: none;" for="toggle">alt menu</label> -->
         </div>
 
         <section class="hero">
@@ -479,21 +515,21 @@
         <div id="first-card-container" class="card-container">
             <article class="card">
                 <h2>Заголовок</h2>
-                <div class="border"></div>
+                <div class="border-card"></div>
                 <p>Текст карточки</p>
                 <div class="card__image"></div>
             </article>
 
             <article class="card">
                 <h2>Заголовок</h2>
-                <div class="border"></div>
+                <div class="border-card"></div>
                 <p>Текст карточки</p>
                 <div class="card__image"></div>
             </article>
 
             <article class="card">
                 <h2>Заголовок</h2>
-                <div class="border"></div>
+                <div class="border-card"></div>
                 <p>Текст карточки</p>
                 <div class="card__image"></div>
             </article>
@@ -502,21 +538,21 @@
         <div class="card-container">
             <article class="card">
                 <h2>Заголовок</h2>
-                <div class="border"></div>
+                <div class="border-card"></div>
                 <p>Текст карточки</p>
                 <div style="background-image: url(./res/mc.webp);" class="card__image"></div>
             </article>
 
             <article class="card">
                 <h2>Заголовок</h2>
-                <div class="border"></div>
+                <div class="border-card"></div>
                 <p>Текст карточки</p>
                 <div class="card__image"></div>
             </article>
 
             <article class="card">
                 <h2>Заголовок</h2>
-                <div class="border"></div>
+                <div class="border-card"></div>
                 <p>Текст карточки</p>
                 <div class="card__image"></div>
             </article>
