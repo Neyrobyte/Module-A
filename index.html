@@ -149,16 +149,95 @@
             display: flex;
             justify-content: left;
             align-items: center;
-            padding: 0.7rem;
+            padding: 0;
             width: 100%;
             border-bottom: 1px solid var(--border);
-            /* user-select: none; */
             height: var(--tool-line-height);
         }
 
-        #toggle:checked+.menu {
-            display: block;
+        .tool-menu {
+            position: relative;
+            display: flex;
+            cursor: pointer;
+            list-style: none;
+            justify-content: center;
+            /* margin: 0; */
+            margin: 0.2rem;
+            margin-left: 0.6rem;
+            margin-right: 0.6rem;
+            gap: 2rem;
+            transition: color 0.3s;
+            width: 8rem;
+            height: 100%;
+            z-index: 10;
         }
+
+        .tool-menu p {
+            margin: auto;
+            padding: 0;
+            padding-left: 0.6rem;
+            transition: color 0.3s;
+        }
+
+        .tool-dropdown {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            top: 100%;
+            width: 8rem;
+            background: var(--black);
+            border: 1px solid var(--border);
+            border-top: 1px solid transparent;
+            line-height: 2.5rem;
+            transform: translateY(-10px);
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            z-index: 20;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .tool-menu:hover {
+            color: var(--secondary-green);
+        }
+
+        .tool-menu:hover .tool-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0px);
+            pointer-events: auto;
+        }
+
+        .tool-menu-item {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            line-height: normal;
+            letter-spacing: 0.5px;
+            list-style: none;
+            cursor: pointer;
+            padding: 0;
+            margin: 0.4rem;
+            height: 2rem;
+            width: 60%;
+            transition: color 0.3s;
+            border: 1.0px #00000000 solid;
+            border-radius: 5px;
+            color: var(--light);
+        }
+
+        .tool-menu-item:hover {
+            color: var(--secondary-green);
+            border-color: var(--border);
+            border-radius: 5px;
+        }
+
+        /* #toggle:checked+.menu {
+            display: block;
+        } */
 
 
         /* Hero */
@@ -169,14 +248,15 @@
             padding: 0;
             height: 50%;
             overflow: hidden;
+            cursor: default;
         }
 
         .hero h1 {
             position: absolute;
             display: block;
             text-align: center;
-            top: 40%;
             /* Ровно на -10% о центра */
+            top: 40%;
             left: 50%;
             font-size: 3rem;
             color: var(--secondary-cyan);
@@ -188,8 +268,8 @@
         .hero p {
             position: absolute;
             display: block;
-            top: 60%;
             /* Ровно на +10% о центра */
+            top: 60%;
             left: 50%;
             font-size: 1.5rem;
             color: var(--light);
@@ -308,8 +388,6 @@
         }
 
         /* =============== */
-
-
 
         .nav-dropdown {
             display: block;
@@ -497,6 +575,38 @@
     <!-- <section class="flex-container"> -->
     <main class="block-container">
         <div class="tool-line">
+            <div class="tool-menu">
+                <p>Просмотр</p>
+                <ul class="tool-dropdown">
+                    <li class="tool-menu-item">Жанры</li>
+                    <li class="tool-menu-item">Игры</li>
+                    <li class="tool-menu-item">Каталог</li>
+                    <li class="tool-menu-item">Новинки</li>
+                </ul>
+            </div>
+
+            <div class="tool-menu">
+                <p>Аккаунт</p>
+                <ul class="tool-dropdown">
+                    <li class="tool-menu-item">Войти</li>
+                    <li class="tool-menu-item">Регистрация</li>
+                    <li class="tool-menu-item">Личный кабинет</li>
+                    <li class="tool-menu-item">Корзина</li>
+                </ul>
+            </div>
+
+            <div class="tool-menu">
+                <p>Категории</p>
+                <ul class="tool-dropdown">
+                    <li class="tool-menu-item">Головоломки</li>
+                    <li class="tool-menu-item">Симуляторы</li>
+                    <li class="tool-menu-item">Песочницы</li>
+                    <li class="tool-menu-item">Хорроры</li>
+                    <li class="tool-menu-item">Ролевые</li>
+                </ul>
+            </div>
+
+
             <!-- <input id="toggle" type="checkbox" hidden>
             <nav class="menu">
                 <div>
