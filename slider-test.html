@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Simple CSS Slider</title>
+    <style>
+        /* 1. Основные настройки экрана */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #171717;
+        }
+
+        /* 2. Контейнер для слайдов (Окно, в которое мы смотрим) */
+        .slider-window {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 3. Лента со слайдами (Все слайды в одну линию) */
+        .slides-line {
+            display: flex;
+            width: 500%;
+            /* 5 слайдов по 100% каждый */
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 4. Скрываем радио-кнопки */
+        input[name="slider"] {
+            display: none;
+        }
+
+        /* 5. Логика движения ленты */
+        #btn1:checked~.slides-line {
+            transform: translateX(0);
+        }
+
+        #btn2:checked~.slides-line {
+            transform: translateX(-100vw);
+        }
+
+        #btn3:checked~.slides-line {
+            transform: translateX(-200vw);
+        }
+
+        #btn4:checked~.slides-line {
+            transform: translateX(-300vw);
+        }
+
+        #btn5:checked~.slides-line {
+            transform: translateX(-400vw);
+        }
+
+        /* 6. Навигация (Точки) */
+        .navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .dot {
+            width: 15px;
+            height: 15px;
+            border: 2px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Подсветка активной точки */
+        #btn1:checked~.navigation label[for="btn1"],
+        #btn2:checked~.navigation label[for="btn2"],
+        #btn3:checked~.navigation label[for="btn3"],
+        #btn4:checked~.navigation label[for="btn4"],
+        #btn5:checked~.navigation label[for="btn5"] {
+            background-color: white;
+        }
+
+        /* 7. Синие стрелки (упрощенно) */
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: #366cb3;
+            border: 2px rgba(53, 76, 151, 0.096) solid;
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+            z-index: 15;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 20px;
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        /* Скрываем все стрелки по умолчанию */
+        .arrow {
+            display: none;
+        }
+
+        /* Показываем нужные стрелки в зависимости от выбранного слайда */
+        #btn1:checked~.next-1,
+        #btn2:checked~.next-2,
+        #btn3:checked~.next-3,
+        #btn4:checked~.next-4 {
+            display: block;
+        }
+
+        #btn2:checked~.prev-1,
+        #btn3:checked~.prev-2,
+        #btn4:checked~.prev-3,
+        #btn5:checked~.prev-4 {
+            display: block;
+        }
+
+        /* Фотографии */
+        .bg1 {
+            background-image: url('https://images.unsplash.com/photo-1422806310414-91469fe4977e?w=1200');
+        }
+
+        .bg2 {
+            background-image: url('https://images.unsplash.com/photo-1490020641477-3b0e96306b9a?w=1200');
+        }
+
+        .bg3 {
+            background-image: url('https://images.unsplash.com/photo-1512529111457-3e8a595ef8e9?w=1200');
+        }
+
+        .bg4 {
+            background-image: url('https://images.unsplash.com/photo-1504700610630-ac6aba3536d3?w=1200');
+        }
+
+        .bg5 {
+            background-image: url('https://images.unsplash.com/reserve/wPCyys8TPCHY3GXm2N2D_ssp_inthewoods_1.jpg?w=1200');
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="slider-window">
+        <input type="radio" name="slider" id="btn1" checked>
+        <input type="radio" name="slider" id="btn2">
+        <input type="radio" name="slider" id="btn3">
+        <input type="radio" name="slider" id="btn4">
+        <input type="radio" name="slider" id="btn5">
+
+        <label for="btn2" class="arrow next next-1">❯</label>
+        <label for="btn3" class="arrow next next-2">❯</label>
+        <label for="btn4" class="arrow next next-3">❯</label>
+        <label for="btn5" class="arrow next next-4">❯</label>
+
+        <label for="btn1" class="arrow prev prev-1">❮</label>
+        <label for="btn2" class="arrow prev prev-2">❮</label>
+        <label for="btn3" class="arrow prev prev-3">❮</label>
+        <label for="btn4" class="arrow prev prev-4">❮</label>
+
+        <div class="slides-line">
+            <div class="slide bg1"></div>
+            <div class="slide bg2"></div>
+            <div class="slide bg3"></div>
+            <div class="slide bg4"></div>
+            <div class="slide bg5"></div>
+        </div>
+
+        <div class="navigation">
+            <label for="btn1" class="dot"></label>
+            <label for="btn2" class="dot"></label>
+            <label for="btn3" class="dot"></label>
+            <label for="btn4" class="dot"></label>
+            <label for="btn5" class="dot"></label>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal Scroll Mouse Wheel CSS</title>
+    <style>
+        body {
+            background-color: #171717;
+            margin: 0;
+            font-family: Impact, sans-serif;
+            color: #111111;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        /* Внешний контейнер для правильного позиционирования на странице */
+        .slider-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 40rem;
+            height: 40rem;
+            background-color: yellow;
+        }
+
+        /* Контейнер, который ограничит область просмотра */
+        .slider-wrapper {
+            top: 0;
+            width: 40rem;     /* Это будет ВЫСОТА слайдера */
+            height: 40rem;    /* Это будет ШИРИНА слайдера */
+            transform: rotate(-90deg);
+            overflow-y: auto; /* Включаем вертикальный скролл (который станет горизонтальным) */
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory; /* Меняем x на y */
+        }
+
+        .slider {
+            display: flex;
+            flex-direction: column; /* Слайды теперь идут сверху вниз */
+        }
+
+        .slide {
+            width: 40rem;     /* Ширина слайда */
+            height: 40rem;    /* Высота слайда */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            scroll-snap-align: start;
+
+            /* Поворачиваем контент обратно */
+            transform: rotate(90deg);
+            /* transform-origin: center center; */
+            /* flex-shrink: 0; */
+        }
+    </style>
+</head>
+<body>
+    <div class="slider-container">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <div style="background-color: #3b3b3b;" class="slide">Слайд 1</div>
+                <div style="background-color: #686868;" class="slide">Слайд 2</div>
+                <div style="background-color: #3b3b3b;" class="slide">Слайд 3</div>
+                <div style="background-color: #686868;" class="slide">Слайд 4</div>
+                <div style="background-color: #3b3b3b;" class="slide">Слайд 5</div>
+                <div style="background-color: #3b3b3b;" class="slide">Слайд 6</div>
+                <div style="background-color: #3b3b3b;" class="slide">Слайд 7</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -190,13 +190,14 @@
             background: var(--black);
             border: 1px solid var(--border);
             border-top: 1px solid transparent;
-            line-height: 2.5rem;
             transform: translateY(-10px);
             transition: transform 0.25s ease, opacity 0.25s ease;
             z-index: 20;
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+            padding: 0;
+            margin: 0;
         }
 
         .tool-menu:hover {
@@ -215,15 +216,17 @@
             justify-content: center;
             text-align: center;
             align-items: center;
-            line-height: normal;
             letter-spacing: 0.5px;
-            list-style: none;
+            line-height: 0.9rem;
+            /* white-space: nowrap; */
             cursor: pointer;
-            padding: 0;
-            margin: 0.4rem;
+            padding: 0.6rem;
+            margin-top: 0.4rem;
+            margin-bottom: 0.4rem;
             height: 2rem;
-            width: 60%;
+            width: auto;
             transition: color 0.3s;
+            border-top: 1.0px #00000000 solid;
             border: 1.0px #00000000 solid;
             border-radius: 5px;
             color: var(--light);
@@ -232,7 +235,7 @@
         .tool-menu-item:hover {
             color: var(--secondary-green);
             border-color: var(--border);
-            border-radius: 5px;
+            /* border-radius: 5px; */
         }
 
         /* #toggle:checked+.menu {
@@ -478,6 +481,89 @@
         }
 
 
+        /* Slider */
+        /* Внешний контейнер для правильного позиционирования на странице */
+        .slider-container {
+            /* position: relative; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 50%;
+            /* background-color: yellow; */
+            /* overflow: hidden; */
+        }
+
+        /* Внутренний контейнер, который ограничит область просмотра */
+        .slider-wrapper {
+            top: 0;
+            right: 0;
+            width: 18rem;
+            /* width - это будет ВЫСОТА слайдера */
+            height: 80rem;
+            /* height - это будет ШИРИНА слайдера */
+            transform: rotate(-90deg);
+            overflow-y: auto;
+            /* Включаем вертикальный скролл (который станет горизонтальным) */
+            overflow-x: hidden;
+            scroll-snap-type: y mandatory;
+            /* Меняем x на y */
+            /* background-color: red; */
+            scrollbar-width: none;
+        }
+
+        .slider {
+            width: 18rem;
+            height: 40rem;
+            display: flex;
+            flex-direction: column;
+            /* Слайды теперь идут сверху вниз */
+        }
+
+        .slide {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 18rem;
+            height: 40rem;
+            font-size: 2rem;
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            /* overflow: hidden; */
+        }
+        
+        /* Нужно, что бы настоящие слайды всегда центрировались */
+        .fake-slide {
+            scroll-snap-align: none;
+            visibility: hidden;
+        }
+
+        .slide-bg {
+            position: absolute;
+            top: 10;
+            right: 10;
+            width: 40rem;
+            height: 18rem;
+            background-image: url("./res/grunge.webp");
+            background-size: cover;
+            background-repeat: no-repeat;
+            border: 3px rgb(121, 121, 121) solid;
+            transform: rotate(90deg);
+            
+        }
+        
+        .slide:hover .slide-bg {
+            border: 3px #008f11 solid;
+
+        }
+
+        .slide-content {
+            /* Поворачиваем контент обратно */
+            transform: rotate(90deg);
+        }
+
+
         /* Media */
         @media (max-width: 768px) {
 
@@ -587,7 +673,7 @@
 
             <div class="tool-menu">
                 <p>Аккаунт</p>
-                <ul class="tool-dropdown">
+                <ul style="width: 10rem;" class="tool-dropdown">
                     <li class="tool-menu-item">Войти</li>
                     <li class="tool-menu-item">Регистрация</li>
                     <li class="tool-menu-item">Личный кабинет</li>
@@ -597,7 +683,7 @@
 
             <div class="tool-menu">
                 <p>Категории</p>
-                <ul class="tool-dropdown">
+                <ul style="width: 9rem;" class="tool-dropdown">
                     <li class="tool-menu-item">Головоломки</li>
                     <li class="tool-menu-item">Симуляторы</li>
                     <li class="tool-menu-item">Песочницы</li>
@@ -622,7 +708,39 @@
             <div class="hero__image"></div>
         </section>
 
-        <div id="first-card-container" class="card-container">
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slider">
+                    <div style="background-color: #3b3b3b;" class="slide fake-slide">
+                        <div class="slide-content"></div>
+                    </div>
+                    <div style="background-color: #686868;" class="slide">
+                        <div class="slide-bg"></div>
+                        <div class="slide-content">Слайд 1</div>
+                    </div>
+                    <div style="background-color: #3b3b3b;" class="slide">
+                        <div class="slide-content">Слайд 2</div>
+                    </div>
+                    <div style="background-color: #686868;" class="slide">
+                        <div class="slide-content">Слайд 3</div>
+                    </div>
+                    <div style="background-color: #3b3b3b;" class="slide">
+                        <div class="slide-content">Слайд 4</div>
+                    </div>
+                    <div style="background-color: #686868;" class="slide">
+                        <div class="slide-content">Слайд 5</div>
+                    </div>
+                    <div style="background-color: #3b3b3b;" class="slide">
+                        <div class="slide-content">Слайд 6</div>
+                    </div>
+                    <div style="background-color: #686868;" class="slide fake-slide">
+                        <div class="slide-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-container">
             <article class="card">
                 <h2>Заголовок</h2>
                 <div class="border-card"></div>
@@ -670,16 +788,6 @@
     </main>
     <!-- </section> -->
 
-
-    <script>
-        const burger = document.querySelector('.burger');
-        const nav = document.querySelector('.nav');
-
-        burger.addEventListener('click', () => {
-            nav.classList.toggle('nav--open');
-        });
-
-    </script>
 </body>
 
 </html>
